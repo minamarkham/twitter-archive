@@ -22,5 +22,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
+    - name: Install Dependencies
+      run: npm ci
     - name: Fetch Tweets
       run: npm run fetch-new-data
