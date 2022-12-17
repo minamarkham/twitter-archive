@@ -1,14 +1,33 @@
-* {
+:root {
+    --primary: #ff3377;
+    --background: #f2f2f2;
+    --white: #fff;
+    --black: #000;
+    --blockquote-color: rgba(0, 0, 0, 0.2);
+    --mark-color: rgba(0, 140, 255, 0.1);
+    --unit: 1rem;
+    --container-width: 60ch;
+    --font-family-sans-serif: "TT Chocolates", sans-serif;
+    --font-family-monospace: "Dank Mono", monospace;
+    --font-family-system: system-ui, -apple-system, sans-serif;
+    --kbd-color-background: #f7f7f7;
+    --kbd-color-border: #cbcccd;
+    --kbd-color-text: #222325;
+}
+
+*,
+*::before,
+*::after {
 	box-sizing: border-box;
 }
+
 html {
 	height: 100%;
 }
 body {
 	min-height: 100%;
-	font-family: system-ui, sans-serif;
+	font-family: var(--font-family-sans-serif);
 	margin: 0;
-	padding: .5em .5em ;
 }
 footer {
 	font-size: 0.875em; /* 14px /16 */
@@ -19,8 +38,7 @@ footer {
 }
 :link,
 :visited {
-	color: #1C4A1D;
-	text-decoration-color: #17bf63;
+	text-decoration-color: var(--primary);;
 }
 .sr-only {
 	position: absolute !important;
@@ -235,15 +253,15 @@ h1 .tweet-avatar {
 	flex-basis: 12em;
 	flex-grow: 0.5;
 }
-.tweet-media {
+/* .tweet-media {
 	border-radius: .25em;
 	box-shadow: 0 0px 18px 3px rgb(0 0 0 / 40%);
-}
+} */
 img.tweet-media {
 	display: block;
 	width: 100%;
 	height: 100%;
-	border: 1px solid #ccc;
+	/* border: 1px solid #ccc; */
 }
 video.tweet-media {
 	width: auto;
@@ -364,4 +382,392 @@ img.tweet-media-og {
 	margin: 0 auto;
 	max-width: 40rem; /* 640px /16 */
 	font-size: 1.25em; /* 20px /16 */
+}
+
+.icon {
+	display: inline-block;
+	font-size: 1.5em;
+	height: 1em;
+	width: 1em;
+	vertical-align: middle;
+	fill: currentColor;
+	pointer-events: none;
+}
+
+.me-card {
+	display: flex;
+	align-items: center;
+	font-weight: 700;
+	text-decoration: none;
+	line-height: 1.625;
+}
+
+.me-card__name {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+}
+.me-card__avatar {
+	border-radius: 2000px;
+	margin-right: 0.5rem;
+}
+.me-card__verification {
+	color: #1da1f2;
+	padding-left: 0.25em;
+}
+.me-card__official {
+	flex-basis: 100%;
+	display: flex;
+	align-items: center;
+	color: #757575;
+	font-weight: 400;
+	line-height: 1;
+	font-size: 0.875rem;
+}
+.me-card__official .icon {
+	font-size: 1.125rem;
+	margin-right: 0.25em;
+}
+.page-header {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+	margin: 2rem;
+}
+.page-header__brand {
+	margin-right: auto;
+}
+.page-header__nav {
+	padding: 2rem 0;
+}
+
+:focus {
+	outline: 2px dashed var(--primary);
+	outline-offset: 0.25rem;
+}
+
+/* .page-title {
+	font-size: clamp(2rem,4vw,4rem);
+    letter-spacing: -4px;
+}
+.page-title::before {
+	content: '/';
+	color: var(--primary);
+} */
+
+body {
+	/* font-family: var(--font-family-sans-serif); */
+	display: flex;
+	min-height: 100vh;
+	flex-direction: column;
+	background-color: var(--white);
+	background-image: radial-gradient(rgb(189, 189, 189) 1px, var(--white) 1px);
+	background-size: 20px 20px;
+	background-attachment: fixed;
+	position: relative;
+}
+body::before {
+	content: '';
+	height: 10px;
+	background-color: var(--primary);
+	position: fixed;
+	left: 0;
+	right: 0;
+	z-index: 1000;
+}
+
+a,
+a:visited {
+	color: inherit;
+}
+
+a[href^="//"]:not(.tag):after, a[href^="http://"]:not(.tag):after, a[href^="https://"]:not(.tag):after {
+	content: '↗';
+	font-family: system-ui, -apple-system, sans-serif;
+	font-style: normal;
+	font-weight: 900;
+	color: var(--primary);
+	padding-left: 2px;
+	line-height: 0.75;
+	font-size: 0.8em;
+}
+
+main {
+	/* margin-left: 200px;
+	max-width: 50em;
+	margin-top: 4em; */
+	flex: 1;
+}
+main:focus {
+	outline: none;
+}
+body > footer {
+	padding: 2em 0 2em 200px;
+	width: 100%;
+}
+
+hr {
+	line-height: 1em;
+	position: relative;
+	outline: 0;
+	border: 0;
+	color: var(--black);
+	text-align: center;
+	height: 1.5em;
+	opacity: 0.5;
+}
+hr:before {
+	content: '';
+	background: linear-gradient(to right, transparent, #818078, transparent);
+	position: absolute;
+	left: 0;
+	top: 50%;
+	width: 100%;
+	height: 1px;
+}
+hr:after {
+	content: attr(data-content);
+	position: relative;
+	display: inline-block;
+	color: var(--black);
+	padding: 0 0.5em;
+	line-height: 1.5em;
+	color: #818078;
+	background-color: #fcfcfa;
+}
+
+.page-content,
+form {
+	max-width: 40em;
+    margin: 4em auto;
+    padding: 0;
+}
+
+input.searchbox {
+    border: none;
+    border-bottom: 1px solid #333;
+    background: none;
+	font-family: var(--font-family-sans-serif);
+	appearance: none;
+}
+
+button {
+    text-transform: uppercase;
+    outline: 0;
+    background: rgba(0,0,0,0);
+    transition: all .3 ease;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    color: var(--primary);
+    border: 1px solid var(--primary);
+    letter-spacing: 1px;
+    font-weight: 500;
+}
+
+button:hover {
+    background: #f69;
+}
+
+/*.section-title {
+	font-family: var(--font-family-monospace);
+	text-transform: lowercase;
+}
+ .section-title::before {
+	content: '/';
+	color: var(--primary);
+}
+h2.section-title a {
+	text-decoration: none;
+	color: inherit;
+} */
+
+.search {
+	width: 100%;
+	position: relative;
+	display: flex;
+  }
+
+  .searchTerm {
+	font-family: var(--font-family-sans-serif);
+	width: 100%;
+	border: 2px solid var(--primary);
+	border-right: none;
+	padding: 5px 10px;
+	height: 36px;
+	border-radius: 5px 0 0 5px;
+	outline: none;
+  }
+
+  .searchButton {
+	height: 36px;
+	border: 1px solid var(--primary);
+	background: var(--primary);
+	color: #fff;
+	border-radius: 0 5px 5px 0;
+	cursor: pointer;
+  }
+
+video,
+embed,
+iframe,
+img,
+object {
+	max-width: 100%;
+	height: auto;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 { font-weight: normal; }
+
+code {
+	font-family: var(--font-family-monospace);
+	background-color: #f6f7f8;
+	border: 0.1rem solid rgba(0, 0, 0, 0.1);
+	border-radius: 0.4rem;
+	padding: 0.1rem 0.3rem;
+}
+
+ol {
+	counter-reset: number;
+	list-style: none;
+	padding-left: 0;
+	margin-left: 40px;
+}
+ol li {
+	padding-left: 15px;
+}
+ol li::marker {
+	font-weight: 700;
+	font-size: 0.875rem;
+	color: var(--primary);
+}
+
+ol {
+	list-style: decimal;
+}
+ol ol {
+	list-style: lower-alpha;
+}
+ol ol ol {
+	list-style: lower-roman;
+}
+ol ol ol ol {
+	list-style: decimal;
+}
+
+@font-face {
+    font-family: "Dank Mono";
+    font-style: normal;
+    font-weight: 400;
+    src: url("../fonts/DankMono-regular.woff") format("woff"),url("../fonts/DankMono-regular.woff2") format("woff2")
+}
+
+@font-face {
+    font-family: "Dank Mono";
+    font-style: italic;
+    font-weight: 400;
+    src: url("../fonts/DankMono-italic.woff") format("woff"),url("../fonts/DankMono-italic.woff2") format("woff2")
+}
+
+@font-face {
+    font-family: "TT Chocolates";
+    font-style: normal;
+    font-weight: 100;
+    src: url("../fonts/TTChocolates-ExtraLight.woff") format("woff"),url("../fonts/TTChocolates-ExtraLight.woff2") format("woff2")
+}
+
+@font-face {
+    font-family: "TT Chocolates";
+    font-style: italic;
+    font-weight: 100;
+    src: url("../fonts/TTChocolates-ExtraLightIt.woff") format("woff"),url("../fonts/TTChocolates-ExtraLightIt.woff2") format("woff2")
+}
+
+@font-face {
+    font-family: "TT Chocolates";
+    font-style: normal;
+    font-weight: 300;
+    src: url("../fonts/TTChocolates-Light.woff") format("woff"),url("../fonts/TTChocolates-Light.woff2") format("woff2")
+}
+
+@font-face {
+    font-family: "TT Chocolates";
+    font-style: italic;
+    font-weight: 300;
+    src: url("../fonts/TTChocolates-LightItalic.woff") format("woff"),url("../fonts/TTChocolates-LightItalic.woff2") format("woff2")
+}
+
+@font-face {
+    font-family: "TT Chocolates";
+    font-style: italic;
+    font-weight: 400;
+    src: url("../fonts/TTChocolates-Italic.woff") format("woff"),url("../fonts/TTChocolates-Italic.woff2") format("woff2")
+}
+
+@font-face {
+    font-family: "TT Chocolates";
+    font-style: normal;
+    font-weight: 400;
+    src: url("../fonts/TTChocolates-Regular.woff") format("woff"),url("../fonts/TTChocolates-Regular.woff2") format("woff2")
+}
+
+@font-face {
+    font-family: "TT Chocolates";
+    font-style: normal;
+    font-weight: 500;
+    src: url("../fonts/TTChocolates-Medium.woff") format("woff"),url("../fonts/TTChocolates-Medium.woff2") format("woff2")
+}
+
+@font-face {
+    font-family: "TT Chocolates";
+    font-style: italic;
+    font-weight: 500;
+    src: url("../fonts/TTChocolates-MediumIt.woff") format("woff"),url("../fonts/TTChocolates-MediumIt.woff2") format("woff2")
+}
+
+@font-face {
+    font-family: "TT Chocolates";
+    font-style: normal;
+    font-weight: 600;
+    src: url("../fonts/TTChocolates-DemiBold.woff") format("woff"),url("../fonts/TTChocolates-DemiBold.woff2") format("woff2")
+}
+
+@font-face {
+    font-family: "TT Chocolates";
+    font-style: italic;
+    font-weight: 600;
+    src: url("../fonts/TTChocolates-DemiBoldIt.woff") format("woff"),url("../fonts/TTChocolates-DemiBoldIt.woff2") format("woff2")
+}
+
+@font-face {
+    font-family: "TT Chocolates";
+    font-style: normal;
+    font-weight: 700;
+    src: url("../fonts/TTChocolates-Bold.woff") format("woff"),url("../fonts/TTChocolates-Bold.woff2") format("woff2")
+}
+
+@font-face {
+    font-family: "TT Chocolates";
+    font-style: italic;
+    font-weight: 700;
+    src: url("../fonts/TTChocolates-BoldItalic.woff") format("woff"),url("../fonts/TTChocolates-BoldItalic.woff2") format("woff2")
+}
+
+@font-face {
+    font-family: "TT Chocolates";
+    font-style: normal;
+    font-weight: 900;
+    src: url("../fonts/TTChocolates-ExtraBold.woff") format("woff"),url("../fonts/TTChocolates-ExtraBold.woff2") format("woff2")
+}
+
+@font-face {
+    font-family: "TT Chocolates";
+    font-style: italic;
+    font-weight: 900;
+    src: url("../fonts/TTChocolates-ExtraBoldIt.woff") format("woff"),url("../fonts/TTChocolates-ExtraBoldIt.woff2") format("woff2")
 }

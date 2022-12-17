@@ -1,12 +1,16 @@
 const numeral = require("numeral");
 const { EleventyHtmlBasePlugin } = require("@11ty/eleventy");
+const pluginUnfurl = require("eleventy-plugin-unfurl");
 
 module.exports = function(eleventyConfig) {
+	eleventyConfig.addPlugin(pluginUnfurl);
+
 	eleventyConfig.ignores.add("README.md");
 	eleventyConfig.setServerPassthroughCopyBehavior("copy");
 
 	eleventyConfig.addPassthroughCopy("assets/");
 	eleventyConfig.addPassthroughCopy("img/");
+	eleventyConfig.addPassthroughCopy("fonts/");
 	eleventyConfig.addPassthroughCopy({
 		"node_modules/chartist/dist/chartist.min.css": "assets/chartist.min.css",
 		"node_modules/chartist/dist/chartist.min.js": "assets/chartist.min.js",

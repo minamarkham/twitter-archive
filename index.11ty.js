@@ -259,26 +259,29 @@ class Index extends Twitter {
 		let linksCount12Months = links12Months.length;
 		let httpsLinksCount12Months = links12Months.filter(entry => entry.origin.startsWith("https:")).length;
 		return `
-		<h2 class="tweets-primary-count">
+		<h1 class="tweets-primary-count">
 			<span class="tweets-primary-count-num">${this.renderNumber(tweetCount)}</span> tweet${tweetCount !== 1 ? "s" : ""}
-		</h2>
+		</h1>
 
 		<form class="js" method="get" id="search-url">
 			<h2>Search for <label for="tweet-url">Tweet URL</label>:</h2>
 			<div class="tweets-search">
-				<div class="lo" style="--lo-margin-h: 1em; align-items: center;">
-					<div class="lo-c" style="flex-grow: 100">
-						<input type="url" id="tweet-url" required placeholder="Tweet URL" style="width: 100%">
-					</div>
-					<div class="lo-c" style="flex-grow: .001;">
-						<button type="submit">Search</button>
-					</div>
+				<div class="search">
+					<input type="url" id="tweet-url" required placeholder="Tweet URL" class="searchTerm">
+					<button type="submit" class="searchButton">
+						<svg x="0px" y="0px" viewBox="0 0 24 24" width="20px" height="20px">
+							<g stroke-linecap="square" stroke-linejoin="miter" stroke="currentColor">
+								<line fill="none" stroke-miterlimit="10" x1="22" y1="22" x2="16.4" y2="16.4"/>
+								<circle fill="none" stroke="currentColor" stroke-miterlimit="10" cx="10" cy="10" r="9"/>
+							</g>
+						</svg>
+					</button>
 				</div>
 			</div>
 		</form>
 
-		<div>
-			<h2><a href="/recent/">Recent:</a></h2>
+		<div class="page-content"><div>
+			<h2 class="section-title"><a href="/recent/">Recent:</a></h2>
 			<div class="twtr-sentiment twtr-sentiment-max js">
 				<div class="twtr-sentiment-chart ct-chart"></div>
 				<div class="twtr-sentiment-label">
@@ -286,13 +289,13 @@ class Index extends Twitter {
 					<span>⬆️ 🙂<br>⬇️ 🙁</span>
 				</div>
 			</div>
-			<ol class="tweets tweets-linear-list h-feed hfeed" id="tweets-recent-home">
+			<ol class="tweets tweets-linear-list" id="tweets-recent-home">
 				${recentTweetsHtml.join("")}
 			</ol>
 		</div>
 
 		<div>
-			<h2><a href="/popular/">Popular:</a></h2>
+			<h2 class="section-title"><a href="/popular/">Popular:</a></h2>
 			<ol class="tweets tweets-linear-list">
 				${mostPopularTweetsHtml.join("")}
 			</ol>
@@ -314,7 +317,7 @@ class Index extends Twitter {
 			</div>
 		</div>
 
-		<h2 id="replies">Replies and Mentions</h2>
+		<h2 id="replies" class="section-title">Replies and Mentions</h2>
 		<h3>${this.renderPercentage(replyCount, tweetCount)} of my tweets are replies (×${this.renderNumber(replyCount)})</h3>
 		<div class="lo" style="--lo-stackpoint: 20em">
 			<div class="lo-c">
@@ -368,7 +371,7 @@ class Index extends Twitter {
 			${topSwears.slice(0, 5).map(swear => `<li><code>${this.renderSwearWord(swear.word)}</code> used ${swear.count} times ${swear.count > 1 && swear.count > swear.tweets.length ? `on ${swear.tweets.length} tweet${swear.tweets.length !== 1 ? "s" : ""}` : ""}</li>`).join("")}
 		</ol>
 		<p><em>${this.renderNumber(swearCount)} swear words on ${this.renderNumber(tweetSwearCount)} tweets (${this.renderPercentage(tweetSwearCount, noRetweetsTweetCount)} of all tweets***)</em></p>
-		<p>***: does not include retweets</p>
+		<p>***: does not include retweets</p></div>
 
 		<script>
 		var searchForm = document.getElementById("search-url");

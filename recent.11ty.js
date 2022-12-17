@@ -18,7 +18,7 @@ class Recent extends Twitter {
 		let tweets = await dataSource.getAllTweets();
 		let tweetHtml = await Promise.all(this.getRecentTweets(tweets).map(tweet => this.renderTweet(tweet, {showSentiment: true})));
 
-		return `<h2>Most Recent 40 Tweets</h2>
+		return `<div class="page-content"><h2>Most Recent 40 Tweets</h2>
 		<p>Not including replies or retweets or mentions.</p>
 		<h3>Mood</h3>
 		<div class="twtr-sentiment js">
@@ -29,9 +29,9 @@ class Recent extends Twitter {
 			</div>
 		</div>
 		<h3>Tweets</h3>
-		<ol class="tweets tweets-linear-list h-feed hfeed">
+		<ol class="tweets tweets-linear-list">
 			${tweetHtml.join("")}
-		</ol>
+		</ol></div>
 		<script>
 		var series = getSentimentsFromList( '.tweets' );
 		makeSentimentChart( '.twtr-sentiment-chart', series );
