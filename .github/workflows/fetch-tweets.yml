@@ -1,0 +1,26 @@
+# This workflow will fetch the latest tweets from @minamarkham
+
+name: Fetch Tweets
+
+on: workflow_dispatch
+
+env:
+  TWITTER_BEARER_TOKEN: ${{ secrets.TWITTER_BEARER_TOKEN }}
+
+jobs:
+  fetch_tweets:
+    name: Fetch Tweets from @minamarkham
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [14.x, 16.x, 18.x]
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    - name: Fetch Tweets
+      run: npm run fetch-new-data
