@@ -1,10 +1,7 @@
 const numeral = require("numeral");
 const { EleventyHtmlBasePlugin } = require("@11ty/eleventy");
-const pluginUnfurl = require("eleventy-plugin-unfurl");
 
 module.exports = function(eleventyConfig) {
-	eleventyConfig.addPlugin(pluginUnfurl);
-
 	eleventyConfig.ignores.add("README.md");
 	eleventyConfig.setServerPassthroughCopyBehavior("copy");
 
